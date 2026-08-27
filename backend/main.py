@@ -25,7 +25,7 @@ app.include_router(users.router, prefix="/api/user", tags=["User"])
 
 @app.get("/", include_in_schema=False)
 def read_root():
-    return {"message": "Hello from backend!"}
+    return {"message": "Hello from ireasoner backend!"}
 
 
 
