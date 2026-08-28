@@ -1,11 +1,12 @@
 import { CareerStageProgress } from "./CareerStageProgrees";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router";
 import { CareerNavigator } from "./CareerNavigator";
 import { CareerLevelInfoBoard } from "./CareerLevelInfoBoard";
 import { CareerSelectedStageBoard } from "./CareerSeletedStageBoard";
 import { CareerLockedLevel } from "./CareerLockedLevel";
+import api from "../../utils/api_url";
 
 export function CareerMain({
   careerMe,
@@ -24,7 +25,7 @@ export function CareerMain({
       const token = localStorage.getItem("access_token");
       const userId = localStorage.getItem("userId");
       try {
-        const response = await axios.get(`/api/career/info/${userId}`, {
+        const response = await api.get(`/api/career/info/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

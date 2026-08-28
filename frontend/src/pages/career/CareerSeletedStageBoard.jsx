@@ -1,7 +1,8 @@
 import { formatTime } from "../../utils/formatTime";
 import { capitalize } from "../../utils/capitalize";
 import { useNavigate } from "react-router";
-import axios from "axios";
+// import axios from "axios";
+import api from "../../utils/api_url";
 
 export function CareerSelectedStageBoard({
   stageLevelInfo,
@@ -23,7 +24,7 @@ export function CareerSelectedStageBoard({
       localStorage.removeItem("requested_stage");
     }
     try {
-      const response = await axios.get(`/api/career/question/${userId}`, {
+      const response = await api.get(`/api/career/question/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

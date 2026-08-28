@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router";
 import { CareerHeader } from "./CareerHeader";
 import { CareerMain } from "./CareerMain";
 import { LogOutPopUp } from "./LogOutPopUp";
+import api from "../../utils/api_url";
 
 export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
   const [meInfo, setMeInfo] = useState(null);
@@ -16,7 +17,7 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
     const loadMeInfo = async () => {
       const token = localStorage.getItem("access_token");
       try {
-        const response = await axios.get("/api/user/me", {
+        const response = await api.get("/api/user/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -42,7 +43,7 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
 
     const getCareerMe = async () => {
       try {
-        const response = await axios.get(`/api/career/me/${userId}`, {
+        const response = await api.get(`/api/career/me/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
