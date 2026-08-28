@@ -23,18 +23,15 @@ export function CareerSelectedStageBoard({
       localStorage.removeItem("requested_stage");
     }
     try {
-      const response = await axios.get(
-        `http://localhost:8000/api/career/question/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            requested_level: stageLevelInfo.level,
-            requested_stage: stageLevelInfo.stage,
-          },
+      const response = await axios.get(`/api/career/question/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+        params: {
+          requested_level: stageLevelInfo.level,
+          requested_stage: stageLevelInfo.stage,
+        },
+      });
 
       setQuestion(response.data);
       setTimeMs(stageLevelInfo.time_ms);

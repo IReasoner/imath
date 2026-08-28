@@ -16,7 +16,7 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
     const loadMeInfo = async () => {
       const token = localStorage.getItem("access_token");
       try {
-        const response = await axios.get("http://localhost:8000/api/user/me", {
+        const response = await axios.get("/api/user/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -42,14 +42,11 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
 
     const getCareerMe = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/career/me/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await axios.get(`/api/career/me/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         setCareerMe(response.data);
       } catch (error) {
         console.log(error);

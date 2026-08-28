@@ -22,10 +22,7 @@ export function LoginPage() {
     formData.append("password", `${password}`);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/user/login",
-        formData,
-      );
+      const response = await axios.post("/api/user/login", formData);
 
       localStorage.setItem("access_token", response.data.access_token);
 

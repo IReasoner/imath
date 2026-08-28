@@ -74,6 +74,7 @@ function App() {
                 setQuestion={setQuestion}
                 setTimeMs={setTimeMs}
                 setSwitcher={setSwitcher}
+                isOnline={isOnline}
               />
             </ProtectedRoute>
           }
@@ -98,12 +99,7 @@ function App() {
         />
         <Route
           path="career result"
-          element={
-            <CareerResultPage
-              careerResultInfo={careerResultInfo}
-              isOnline={isOnline}
-            />
-          }
+          element={<CareerResultPage careerResultInfo={careerResultInfo} />}
         />
         <Route
           path="review"

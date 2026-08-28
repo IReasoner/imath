@@ -22,15 +22,12 @@ export function ChallengeSetUp({
   useEffect(() => {
     const getChallengeData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/api/challenge",
-          {
-            params: {
-              type: type,
-              difficulty: difficulty,
-            },
+        const response = await axios.get("/api/challenge", {
+          params: {
+            type: type,
+            difficulty: difficulty,
           },
-        );
+        });
         setChallengeData(response.data);
         setQuestion(response.data.question_box);
         setTimeMs(response.data.time_ms);

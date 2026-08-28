@@ -29,7 +29,7 @@ export function QuizEngine({
 
       try {
         const response = await axios.patch(
-          `http://localhost:8000/api/user/progress/${userId}`,
+          `/api/user/progress/${userId}`,
           {
             level: level,
             stage: stage,

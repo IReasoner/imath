@@ -24,19 +24,16 @@ export function CareerMain({
       const token = localStorage.getItem("access_token");
       const userId = localStorage.getItem("userId");
       try {
-        const response = await axios.get(
-          `http://localhost:8000/api/career/info/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-
-            params: {
-              requested_level: level,
-              requested_stage: currentStage,
-            },
+        const response = await axios.get(`/api/career/info/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+
+          params: {
+            requested_level: level,
+            requested_stage: currentStage,
+          },
+        });
         setStageLevelInfo(response.data);
       } catch (error) {
         if (error.response.status === 401) {

@@ -24,11 +24,11 @@ career_table = {
    "stages_info": {
      "1": {
        "stage_type": "addition",
-       "passed_percentage": 75
+       "passed_percentage": 70
      },   
      "2": {
          "stage_type": "subtraction",
-         "passed_percentage": 75
+         "passed_percentage": 70
       },
       "3": {
          "stage_type": "multiplication",

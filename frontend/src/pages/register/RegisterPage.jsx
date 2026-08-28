@@ -28,14 +28,11 @@ export function RegisterPage() {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/user/register",
-        {
-          username: username,
-          email: email,
-          password: password,
-        },
-      );
+      const response = await axios.post("/api/user/register", {
+        username: username,
+        email: email,
+        password: password,
+      });
 
       setShowSuccess("");
       setMessage(response.data.message);
