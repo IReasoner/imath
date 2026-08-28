@@ -22,7 +22,10 @@ export function LoginPage() {
     formData.append("password", `${password}`);
 
     try {
-      const response = await axios.post("/api/user/login", formData);
+      const response = await axios.post(
+        "https://imath.onrender.com/api/user/login",
+        formData,
+      );
 
       localStorage.setItem("access_token", response.data.access_token);
 

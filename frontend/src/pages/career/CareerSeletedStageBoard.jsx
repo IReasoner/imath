@@ -1,8 +1,7 @@
 import { formatTime } from "../../utils/formatTime";
 import { capitalize } from "../../utils/capitalize";
 import { useNavigate } from "react-router";
-// import axios from "axios";
-import api from "../../utils/api_url";
+import axios from "axios";
 
 export function CareerSelectedStageBoard({
   stageLevelInfo,
@@ -24,15 +23,18 @@ export function CareerSelectedStageBoard({
       localStorage.removeItem("requested_stage");
     }
     try {
-      const response = await api.get(`/api/career/question/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.get(
+        `https://imath.onrender.com/api/career/question/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            requested_level: stageLevelInfo.level,
+            requested_stage: stageLevelInfo.stage,
+          },
         },
-        params: {
-          requested_level: stageLevelInfo.level,
-          requested_stage: stageLevelInfo.stage,
-        },
-      });
+      );
 
       setQuestion(response.data);
       setTimeMs(stageLevelInfo.time_ms);

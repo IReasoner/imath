@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-// import axios from "axios";
 import { useNavigate } from "react-router";
 import { CareerHeader } from "./CareerHeader";
 import { CareerMain } from "./CareerMain";
 import { LogOutPopUp } from "./LogOutPopUp";
-import api from "../../utils/api_url";
+import axios from "axios";
 
 export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
   const [meInfo, setMeInfo] = useState(null);
@@ -17,11 +16,14 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
     const loadMeInfo = async () => {
       const token = localStorage.getItem("access_token");
       try {
-        const response = await api.get("/api/user/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const response = await axios.get(
+          "https://imath.onrender.com/api/user/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
         localStorage.setItem("userId", response.data.id);
         setMeInfo(response.data);
       } catch (error) {
@@ -43,11 +45,14 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
 
     const getCareerMe = async () => {
       try {
-        const response = await api.get(`/api/career/me/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const response = await axios.get(
+          `https://imath.onrender.com/api/career/me/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
         setCareerMe(response.data);
       } catch (error) {
         console.log(error);

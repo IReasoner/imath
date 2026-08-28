@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
-import api from "../utils/api_url";
+import axios from "axios";
 
 export function useBackendWakeUp(isOnline) {
   const [isWakingUp, setIsWakingUp] = useState(true);
@@ -12,7 +11,9 @@ export function useBackendWakeUp(isOnline) {
 
     const checkWakeUp = async () => {
       try {
-        const reponspe = await api.get("/api/health");
+        const reponspe = await axios.get(
+          "https://imath.onrender.com/api/health",
+        );
         console.log(reponspe.data);
         setIsWakingUp(false);
       } catch (error) {

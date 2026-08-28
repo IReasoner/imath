@@ -2,11 +2,10 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { formatTime } from "../../utils/formatTime";
 import { capitalize } from "../../utils/capitalize";
-// import axios from "axios";
-import api from "../../utils/api_url";
 
 import clockIcon from "../../assets/clock_blur.png";
 import rangeIcon from "../../assets/range.png";
+import axios from "axios";
 
 export function ChallengeSetUp({
   setQuestion,
@@ -23,7 +22,7 @@ export function ChallengeSetUp({
   useEffect(() => {
     const getChallengeData = async () => {
       try {
-        const response = await api.get("/api/challenge", {
+        const response = await axios.get("/api/challenge", {
           params: {
             type: type,
             difficulty: difficulty,

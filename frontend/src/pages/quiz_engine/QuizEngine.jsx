@@ -29,7 +29,7 @@ export function QuizEngine({
 
       try {
         const response = await axios.patch(
-          `/api/user/progress/${userId}`,
+          `https://imath.onrender.com/api/user/progress/${userId}`,
           {
             level: level,
             stage: stage,
