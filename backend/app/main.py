@@ -8,6 +8,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",
+    "https://imath-lime.vercel.app"
 ]
 
 app.add_middleware(
