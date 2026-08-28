@@ -3,3 +3,55 @@
 @utility btn {
   @apply rounded-lg border bg-white py-3 font-semibold shadow-sm;
 }
+
+@keyframes imath-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 0.85;
+  }
+}
+
+/* Floating math symbols */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Loading bar */
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+.imath-breathe {
+  animation: imath-breathe 2.2s ease-in-out infinite;
+}
+
+.floating-symbol {
+  animation: float 3s ease-in-out infinite;
+}
+
+.floating-symbol-slow {
+  animation: float 4s ease-in-out infinite;
+}
+
+.loading-animation {
+  animation: loading 1.8s ease-in-out infinite;
+}

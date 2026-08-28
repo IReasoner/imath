@@ -12,6 +12,7 @@ import { OfflineState } from "./components/OfflineState";
 import { ChallengeResultPage } from "./pages/challenge/challenge_result/ChallengeResultPage";
 import { ReviewPage } from "./pages/review/ReviewPage";
 import { CareerResultPage } from "./pages/career/career_result/CareerResultPage";
+import { WakingUp } from "./components/WakingUp";
 
 function App() {
   const [question, setQuestion] = useState(null);
@@ -20,6 +21,7 @@ function App() {
   const [careerResultInfo, setCareerResultInfo] = useState(null);
   const [connectionStatus, setConnectionStatus] = useState(null);
   const [isOnline, setIsOnline] = useState(null);
+  const [isWakingUp, setIsWakingUp] = useState(true);
 
   useEffect(() => {
     if (!navigator.onLine) {
@@ -43,6 +45,8 @@ function App() {
       setIsOnline(false);
     });
   }, []);
+
+  if (isWakingUp) return <WakingUp />;
 
   return (
     <>
