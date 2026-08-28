@@ -6,9 +6,8 @@ export function CareerResultPage({ careerResultInfo }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!careerResultInfo) {
-      navigate("/");
-    }
+    if (!careerResultInfo) navigate("/");
+
     /* eslint-disable */
   }, []);
 
@@ -17,7 +16,6 @@ export function CareerResultPage({ careerResultInfo }) {
   return (
     <div className="bg-gray-50 text-gray-900">
       <div className="mx-auto flex h-dvh w-full max-w-3xl flex-col">
-        {console.log(careerResultInfo)}
         <CareerResultHeader />
         <CareerResultMain careerResultInfo={careerResultInfo} />
       </div>

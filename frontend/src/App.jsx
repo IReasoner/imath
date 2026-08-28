@@ -13,7 +13,7 @@ import { ChallengeResultPage } from "./pages/challenge/challenge_result/Challeng
 import { ReviewPage } from "./pages/review/ReviewPage";
 import { CareerResultPage } from "./pages/career/career_result/CareerResultPage";
 import { WakingUp } from "./components/WakingUp";
-import axios from "axios";
+import { useBackendWakeUp } from "./components/UseBackendWakeUp";
 
 function App() {
   const [question, setQuestion] = useState(null);
@@ -22,30 +22,7 @@ function App() {
   const [careerResultInfo, setCareerResultInfo] = useState(null);
   const [connectionStatus, setConnectionStatus] = useState(null);
   const [isOnline, setIsOnline] = useState(null);
-  const [isWakingUp, setIsWakingUp] = useState(true);
-
-  useEffect(() => {
-    let timeOut;
-
-    const checkWakeUp = async () => {
-      try {
-        const reponspe = await axios.get("/api/health");
-        console.log(reponspe.data);
-        setIsWakingUp(false);
-      } catch (error) {
-        timeOut = setTimeout(() => {
-          checkWakeUp();
-        }, 3000);
-        console.log(error);
-      }
-    };
-
-    checkWakeUp();
-
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, []);
+  const backendReady = useBackendWakeUp(isOnline);
 
   useEffect(() => {
     if (!navigator.onLine) {
@@ -70,7 +47,17 @@ function App() {
     });
   }, []);
 
-  if (isWakingUp) return <WakingUp />;
+  if (backendReady) {
+    return (
+      <>
+        {connectionStatus === "online" && <OnlineState />}
+        {connectionStatus === "offline" && (
+          <OfflineState setConnectionStatus={setConnectionStatus} />
+        )}
+        <WakingUp />
+      </>
+    );
+  }
 
   return (
     <>
