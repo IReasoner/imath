@@ -24,7 +24,7 @@ app.include_router(game_session.router, prefix="/api", tags=["Game Session"])
 app.include_router(users.router, prefix="/api/user", tags=["User"])
 
 
-app.get("/api/health", include_in_schema=False)
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
 
