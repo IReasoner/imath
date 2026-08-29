@@ -26,6 +26,7 @@ export function CareerSelectedStageBoard({
       localStorage.removeItem("requested_stage");
     }
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `https://imath.onrender.com/api/career/question/${userId}`,
         {
