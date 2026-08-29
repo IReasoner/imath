@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import imathIcon from "/math_icon.png";
 
 export function CareerResultHeader() {
   return (
@@ -7,7 +8,10 @@ export function CareerResultHeader() {
         to="/career"
         className="text-lg font-bold tracking-tight text-green-700"
       >
-        iMath
+        <div className="w-fit flex items-center">
+          <img src={imathIcon} alt="imath icon" className="w-6" />
+          <span>iMath</span>
+        </div>
       </Link>
 
       <span className="text-sm font-semibold text-gray-700">Career Result</span>

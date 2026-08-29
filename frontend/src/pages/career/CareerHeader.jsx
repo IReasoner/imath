@@ -1,19 +1,19 @@
 import { Link } from "react-router";
+import imathIcon from "/math_icon.png";
 
 export function CareerHeader({ meInfo, setShowLogOut }) {
   return (
     <header className="flex shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 py-3">
-      {/* <!-- iMath / Home --> */}
-
       <Link to="/" className="text-lg font-bold tracking-tight text-green-700">
-        iMath
+        <h1 className="text-xl font-bold text-center text-green-700">
+          <div className="w-fit flex items-center">
+            <img src={imathIcon} alt="imath icon" className="w-6" />
+            <span>iMath</span>
+          </div>
+        </h1>
       </Link>
 
-      {/* <!-- Right side --> */}
-
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* <!-- Logout --> */}
-
         <button
           className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-semibold text-gray-700 transition hover:border-green-600 hover:text-green-700"
           onClick={() => setShowLogOut(true)}

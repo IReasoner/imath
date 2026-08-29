@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { ChallengeSetUp } from "../challenge/ChallengeSetUp";
 import challengeIcon from "../../assets/thunder.png";
 import careerIcon from "../../assets/brain_career1.png";
+import imathIcon from "/math_icon.png";
 
 export function HomePage({
   setQuestion,
@@ -41,7 +42,10 @@ export function HomePage({
           <main className="flex-1 flex flex-col items-center justify-center py-3">
             {/* <!-- App Name --> */}
 
-            <h1 className="mt-6 text-5xl font-black text-gray-900">iMath</h1>
+            <h1 className="mt-6 text-4xl font-black text-gray-900 flex">
+              <img src={imathIcon} alt="imath_icon" className="w-10" />
+              iMath
+            </h1>
 
             <p className="mt-2 text-gray-600 text-center">
               Learn. Practice. Master Mathematics.

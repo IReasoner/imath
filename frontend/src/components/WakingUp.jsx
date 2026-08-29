@@ -1,3 +1,5 @@
+import imathIcon from "/math_icon.png";
+
 export function WakingUp() {
   return (
     <>
@@ -25,8 +27,10 @@ export function WakingUp() {
           <div className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full border border-green-100 sm:h-56 sm:w-56"></div>
 
           <section className="relative z-10 flex w-full max-w-md flex-col items-center text-center">
-            <div className="imath-breathe">
-              <h1 className="text-4xl font-black tracking-tight text-green-700 sm:text-5xl">
+            <div className="imath-breathe flex">
+              <img src={imathIcon} alt="imath icon" className="w-10" />
+
+              <h1 className="text-4xl font-black tracking-tight sm:text-4xl flex">
                 iMath
               </h1>
             </div>

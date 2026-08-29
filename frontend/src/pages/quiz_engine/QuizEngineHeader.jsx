@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { QuizEngineTimer } from "./QuizEngineTimer";
+import imathIcon from "/math_icon.png";
 
 export function QuizEngineHeader({
   question,
@@ -25,7 +26,10 @@ export function QuizEngineHeader({
           className="text-xl font-bold text-green-700 cursor-pointer"
           onClick={() => navigate(switcher)}
         >
-          iMath
+          <div className="w-fit flex items-center">
+            <img src={imathIcon} alt="imath icon" className="w-6" />
+            <span>iMath</span>
+          </div>
         </h1>
 
         <div className="flex items-center gap-5 text-sm">

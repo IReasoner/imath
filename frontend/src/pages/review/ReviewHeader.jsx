@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import imathIcon from "/math_icon.png";
 
 export function ReviewHeader({ question, setFilter, filter, switcher }) {
   const navigate = useNavigate();
@@ -48,7 +49,10 @@ export function ReviewHeader({ question, setFilter, filter, switcher }) {
           className="text-xl font-bold text-green-700 cursor-pointer"
           onClick={() => navigate(switcher)}
         >
-          iMath
+          <div className="w-fit flex items-center">
+            <img src={imathIcon} alt="imath icon" className="w-6" />
+            <span>iMath</span>
+          </div>
         </h1>
 
         <span className="text-sm font-semibold text-gray-700">

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import loadingIcon from "../../assets/loading.png";
+import imathIcon from "/math_icon.png";
 
 export function RegisterPage() {
   const [username, setUserName] = useState("");
@@ -68,7 +69,10 @@ export function RegisterPage() {
 
         <div className="w-full max-w-sm rounded-xl border border-gray-200 bg-white shadow-md p-5">
           <h1 className="text-2xl font-bold text-center text-green-700">
-            iMath
+            <div className="w-fit flex items-center mx-auto">
+              <img src={imathIcon} alt="imath icon" className="w-10" />
+              <span>iMath</span>
+            </div>
           </h1>
 
           <p className="mt-1 text-center text-sm text-gray-500">
