@@ -11,12 +11,14 @@ export function useBackendWakeUp(isOnline) {
 
     const checkWakeUp = async () => {
       try {
-        const reponspe = await axios.get(
-          "https://imath.onrender.com/api/health",
-        );
-        console.log(reponspe.data);
+        await axios.get("https://imath.onrender.com/api/health");
         setIsWakingUp(false);
       } catch (error) {
+        if (!isOnline) {
+          clearTimeout(timeOut);
+          return;
+        }
+
         timeOut = setTimeout(() => {
           checkWakeUp();
         }, 3000);

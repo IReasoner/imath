@@ -50,7 +50,7 @@ export function CareerMain({
     /* eslint-disable */
   }, [currentStage, level]);
 
-  if (!stageLevelInfo) return null;
+  if (!stageLevelInfo) return <div>Loading...</div>;
 
   return (
     <main className="flex-1 overflow-y-auto px-4 py-5 sm:px-6">

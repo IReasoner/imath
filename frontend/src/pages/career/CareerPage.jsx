@@ -62,7 +62,7 @@ export function CareerPage({ setQuestion, setTimeMs, setSwitcher, isOnline }) {
     getCareerMe();
   }, [meInfo]);
 
-  if (!careerMe || !meInfo) return null;
+  if (!careerMe || !meInfo) return <div>loading...</div>;
 
   return (
     <>
