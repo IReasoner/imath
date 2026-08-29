@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import loadingIcon from "../../assets/loading.png";
+
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSuccess, setShowSuccess] = useState("hidden");
   const [showError, setShowError] = useState("hidden");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(null);
 
   const navigate = useNavigate();
 
@@ -22,6 +25,7 @@ export function LoginPage() {
     formData.append("password", `${password}`);
 
     try {
+      setIsLoading(true);
       const response = await axios.post(
         "https://imath.onrender.com/api/user/login",
         formData,
@@ -33,15 +37,17 @@ export function LoginPage() {
       setPassword("");
       setShowSuccess("");
       setMessage("login successfully");
+      setIsLoading(false);
       setTimeout(() => {
         navigate("/career");
         setShowSuccess("hidden");
-      }, 1500);
+      }, 1000);
     } catch (error) {
       console.log(error.response);
       const detail = error.response.data.detail;
       setShowError("");
       setMessage(detail);
+      setIsLoading(false);
     }
   }
 
@@ -127,8 +133,17 @@ export function LoginPage() {
               />
             </div>
 
-            <button className="w-full h-10 rounded-lg bg-green-600 text-sm font-semibold text-white transition hover:bg-green-700">
-              Login
+            <button
+              disabled={isLoading}
+              className="w-full h-10 rounded-lg bg-green-600 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-wait disabled:opacity-70 disabled:hover:bg-green-600"
+            >
+              {isLoading ? (
+                <div className="w-full flex items-center justify-center">
+                  <img src={loadingIcon} className="w-6 animate-spin" />
+                </div>
+              ) : (
+                "Login"
+              )}
             </button>
           </form>
 

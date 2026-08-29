@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @utility btn {
-  @apply rounded-lg border bg-white py-3 font-semibold shadow-sm;
+  @apply rounded-lg border bg-gray-200 py-3 font-semibold shadow-sm active:bg-gray-100;
 }
 
 @keyframes imath-breathe {

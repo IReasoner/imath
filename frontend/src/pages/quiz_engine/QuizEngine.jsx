@@ -16,6 +16,7 @@ export function QuizEngine({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(null);
 
   async function resultNavigator() {
     if (switcher === "/career") {
@@ -28,6 +29,7 @@ export function QuizEngine({
       const stage = localStorage.getItem("requested_stage");
 
       try {
+        setIsLoading(true);
         const response = await axios.patch(
           `https://imath.onrender.com/api/user/progress/${userId}`,
           {
@@ -46,6 +48,7 @@ export function QuizEngine({
         navigate("/career result");
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
       }
     } else {
       navigate("/challenge result");
@@ -86,6 +89,7 @@ export function QuizEngine({
             currentIndex={currentIndex}
             resultNavigator={resultNavigator}
             isOnline={isOnline}
+            isLoading={isLoading}
           />
         </div>
       </div>

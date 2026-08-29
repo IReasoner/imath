@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { ChallengeSetUp } from "../challenge/ChallengeSetUp";
 import challengeIcon from "../../assets/thunder.png";
 import careerIcon from "../../assets/brain_career1.png";
@@ -56,9 +56,9 @@ export function HomePage({
           )}
 
           <div className="mt-8 grid w-full max-w-lg grid-cols-1 gap-3 sm:grid-cols-2">
-            <Link
-              to={isOnline ? "/career" : ""}
-              className="group relative rounded-xl border border-green-200 bg-green-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-green-600 hover:shadow-md"
+            <div
+              // to={isOnline ? "/career" : ""}
+              className="group relative rounded-xl border border-green-200 bg-green-50 p-4 text-left transition hover:-translate-y-0.5 hover:border-green-600 hover:shadow-md active:opacity-70"
             >
               <span className="absolute right-3 top-3 rounded-full bg-white px-2 py-1 text-[10px] font-semibold text-green-700 shadow-sm">
                 Sign in required
@@ -77,10 +77,10 @@ export function HomePage({
               <div className="mt-3 text-xs font-semibold text-green-700">
                 Start your journey →
               </div>
-            </Link>
+            </div>
 
             <div
-              className="group rounded-xl border border-gray-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-green-600 hover:shadow-md cursor-pointer"
+              className="group rounded-xl border border-gray-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-green-600 hover:shadow-md cursor-pointer active:opacity-70"
               onClick={() => {
                 if (isOnline) {
                   setChallengePopUp(true);

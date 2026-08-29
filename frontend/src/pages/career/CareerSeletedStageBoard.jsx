@@ -1,7 +1,9 @@
 import { formatTime } from "../../utils/formatTime";
 import { capitalize } from "../../utils/capitalize";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import loadingIcon from "../../assets/loading.png";
 
 export function CareerSelectedStageBoard({
   stageLevelInfo,
@@ -11,6 +13,7 @@ export function CareerSelectedStageBoard({
   isOnline,
 }) {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(null);
   async function loadCareerQuestion() {
     const token = localStorage.getItem("access_token");
     const userId = localStorage.getItem("userId");
@@ -44,6 +47,7 @@ export function CareerSelectedStageBoard({
       localStorage.setItem("requested_stage", stageLevelInfo.stage);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   }
 
@@ -98,12 +102,19 @@ export function CareerSelectedStageBoard({
       </div>
 
       <button
-        className="mt-4 w-full rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700 cursor-pointer"
+        disabled={isLoading}
+        className="mt-4 w-full rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700 cursor-pointer disabled:cursor-wait disabled:opacity-70 disabled:hover:bg-green-600"
         onClick={() => {
           if (isOnline) loadCareerQuestion();
         }}
       >
-        Begin Stage
+        {isLoading ? (
+          <div className="w-full flex items-center justify-center">
+            <img src={loadingIcon} className="w-6 animate-spin" />
+          </div>
+        ) : (
+          "Begin Stage"
+        )}
       </button>
     </section>
   );

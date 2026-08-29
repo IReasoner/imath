@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import loadingIcon from "../../assets/loading.png";
 
 export function RegisterPage() {
   const [username, setUserName] = useState("");
@@ -10,6 +11,7 @@ export function RegisterPage() {
   const [showSuccess, setShowSuccess] = useState("hidden");
   const [showError, setShowError] = useState("hidden");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(null);
 
   const navigate = useNavigate();
 
@@ -28,6 +30,7 @@ export function RegisterPage() {
     }
 
     try {
+      setIsLoading(true);
       const response = await axios.post(
         "https://imath.onrender.com/api/user/register",
         {
@@ -43,16 +46,17 @@ export function RegisterPage() {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-
+      setIsLoading(false);
       setTimeout(() => {
         navigate("/login");
         setShowSuccess("hidden");
-      }, 1500);
+      }, 1000);
     } catch (error) {
       console.log(error.response);
       const detail = error.response.data.detail;
       setShowError("");
       setMessage(detail);
+      setIsLoading(false);
     }
   }
 
@@ -157,8 +161,17 @@ export function RegisterPage() {
               />
             </div>
 
-            <button className="w-full h-10 rounded-lg bg-green-600 text-sm font-semibold text-white transition hover:bg-green-700">
-              Create Account
+            <button
+              disabled={isLoading}
+              className="w-full h-10 rounded-lg bg-green-600 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-wait disabled:opacity-70 disabled:hover:bg-green-600"
+            >
+              {isLoading ? (
+                <div className="w-full flex items-center justify-center">
+                  <img src={loadingIcon} className="w-6 animate-spin" />
+                </div>
+              ) : (
+                "Create Account"
+              )}
             </button>
           </form>
 

@@ -5,6 +5,7 @@ import { capitalize } from "../../utils/capitalize";
 
 import clockIcon from "../../assets/clock_blur.png";
 import rangeIcon from "../../assets/range.png";
+import loadingIcon from "../../assets/loading.png";
 import axios from "axios";
 
 export function ChallengeSetUp({
@@ -17,17 +18,21 @@ export function ChallengeSetUp({
   const [challengeData, setChallengeData] = useState(null);
   const [difficulty, setDifficulty] = useState("easy");
   const [type, setType] = useState("addition");
+  const [isLoading, setIsLoading] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getChallengeData = async () => {
       try {
-        const response = await axios.get("/api/challenge", {
-          params: {
-            type: type,
-            difficulty: difficulty,
+        const response = await axios.get(
+          "https://imath.onrender.com/api/challenge",
+          {
+            params: {
+              type: type,
+              difficulty: difficulty,
+            },
           },
-        });
+        );
         setChallengeData(response.data);
         setQuestion(response.data.question_box);
         setTimeMs(response.data.time_ms);
@@ -184,15 +189,23 @@ export function ChallengeSetUp({
             {/* <!-- Button --> */}
 
             <button
-              className="mt-5 h-10 w-full rounded-lg bg-green-600 text-sm font-semibold text-white transition hover:bg-green-700 cursor-pointer"
+              disabled={isLoading}
+              className="mt-5 h-10 w-full rounded-lg bg-green-600 text-sm font-semibold text-white transition hover:bg-green-700 cursor-pointer disabled:cursor-wait disabled:opacity-70 disabled:hover:bg-green-600"
               onClick={() => {
                 if (isOnline) {
+                  setIsLoading(true);
                   setSwitcher("/");
                   navigate("/quiz");
                 }
               }}
             >
-              Start Test
+              {isLoading ? (
+                <div className="w-full flex items-center justify-center">
+                  <img src={loadingIcon} className="w-6 animate-spin" />
+                </div>
+              ) : (
+                "Start Test"
+              )}
             </button>
           </div>
         </div>
